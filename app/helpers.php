@@ -4,6 +4,16 @@ function base_url($path = '')
     return 'http://localhost/template_master/' . $path;
 }
 
+function view($viewName, $data = [])
+{
+    // Extract the data array into individual variables
+    extract($data);
+
+    // Include the specified view file
+    include __DIR__ . '/../views/' . $viewName . '.php';
+}
+
+
 function encrypt($data, $key = 'your_secret_key')
 {
     $cipher = "AES-128-CTR";

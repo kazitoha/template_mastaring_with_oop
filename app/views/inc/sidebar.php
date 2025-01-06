@@ -1,5 +1,5 @@
 <body>
-    <div class="loader"></div>
+    <!-- <div class="loader"></div> -->
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
@@ -164,7 +164,16 @@
                     <ul class="sidebar-menu">
                         <li class="menu-header">Main</li>
                         <li class="dropdown active">
-                            <a href="?page=dashboard" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+                            <!-- <a href="?page=dashboard" data-page="dashboard" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a> -->
+                            <a href="#" data-page="dashboard" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="dropdown">
+                            <!-- <a href="?page=user" class="nav-link"><i data-feather="monitor"></i><span>User Information</span></a> -->
+                            <a href="#" data-page="user" class="nav-link"><i data-feather="monitor"></i><span>User Information</span></a>
+                        </li>
+                        <li class="dropdown">
+                            <!-- <a href="?page=user" class="nav-link"><i data-feather="monitor"></i><span>User Information</span></a> -->
+                            <a href="#" data-page="testing" class="nav-link"><i data-feather="monitor"></i><span>testing</span></a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="menu-toggle nav-link has-dropdown"><i
