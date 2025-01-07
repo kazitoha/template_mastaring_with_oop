@@ -3,14 +3,15 @@
 require_once '../app/controllers/UserController.php';
 $userController = new UserController();
 // print_r($_SESSION);
-$users = $userController->getUsers();
+$page = isset($_GET['page']) ? $_GET['page'] : 1; // Get the current page
+$users = $userController->getUsers($page);
 // print_r($users);
-if (isset($_POST['user_name']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $newUserId = $userController->addUser($_POST['user_name'], $_POST['email'], $_POST['password']);
-    if ($newUserId) {
-        echo "Data inserted.";
-    }
-}
+// if (isset($_POST['user_name']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+//     $newUserId = $userController->addUser($_POST['user_name'], $_POST['email'], $_POST['password']);
+//     if ($newUserId) {
+//         echo "Data inserted.";
+//     }
+// }
 
 // if ($_GET['edituser']) {
 //     $userId = base64_decode($_GET['edituser']);

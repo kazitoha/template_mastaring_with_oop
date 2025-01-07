@@ -1,18 +1,13 @@
 <?php
+// Enable error reporting for debugging and logging
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
-require_once '../autoloader.php';
+ini_set('display_errors', 1); // Turn off display of errors
+ini_set('log_errors', 1);     // Enable error logging
+ini_set('error_log', __DIR__ . '/../storage/logs/app.log');
+
+// require_once __DIR__ . '/../autoloader.php';
 
 
-
-require_once __DIR__ . '/../app/controllers/HomeController.php';
-require_once __DIR__ . '/../config/Database.php';
-require_once __DIR__ . '/../app/helpers.php';
-require_once __DIR__ . '/../app/views/inc/header.php';
-require_once __DIR__ . '/../app/views/inc/sidebar.php';
-
-// Default page load
-$page = $_GET['page'] ?? 'dashboard';
 ?>
 
 <div id="main-content" class="main-content">
@@ -21,12 +16,16 @@ $page = $_GET['page'] ?? 'dashboard';
     </section>
 </div>
 
+
 <?php
-require_once __DIR__ . '/../app/views/inc/footer.php';
+// Delegate routing to route.php
+require_once __DIR__ . '/route.php';
 ?>
 
+<!-- JavaScript for page switching via AJAX -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // Function to dynamically load pages
         function loadPage(page) {
             const mainContent = document.getElementById("main-content");
 

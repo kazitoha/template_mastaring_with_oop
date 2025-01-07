@@ -1,14 +1,17 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-// require_once '../autoloader.php';    
-require_once __DIR__ . '/../app/controllers/HomeController.php';
-require_once __DIR__ . '/../config/Database.php';
+
+// Include common layout parts
 require_once __DIR__ . '/../app/helpers.php';
+require_once __DIR__ . '/../app/views/layout/header.php';
+require_once __DIR__ . '/../app/views/layout/sidebar.php';
+require_once __DIR__ . '/../config/Database.php';
+
+
+// Default page to load
+$page = $_GET['page'] ?? 'dashboard';
 
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
-    $controller = new HomeController();
 
     switch ($page) {
         case 'dashboard':
@@ -29,3 +32,7 @@ if (isset($_GET['page'])) {
     }
     exit;
 }
+
+
+// Include footer
+require_once __DIR__ . '/../app/views/layout/footer.php';

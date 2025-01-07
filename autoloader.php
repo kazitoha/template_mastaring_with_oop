@@ -1,12 +1,10 @@
-// autoloader.php
 <?php
-
 function autoload($className)
 {
-    // Convert the namespace to a file path
+    // Convert the namespace to a file path (for other classes)
     $className = str_replace('\\', '/', $className);
 
-    // Define the full file path
+    // Define the full file path for other classes
     $file = __DIR__ . '/' . $className . '.php';
 
     echo "Attempting to load class: $file<br>";  // Debugging output
