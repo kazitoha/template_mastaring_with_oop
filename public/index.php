@@ -23,6 +23,7 @@ require_once __DIR__ . '/route.php';
 ?>
 
 <!-- JavaScript for page switching via AJAX -->
+<!-- JavaScript for page switching via AJAX and URL manipulation -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Function to dynamically load pages
@@ -43,6 +44,11 @@ require_once __DIR__ . '/route.php';
                 .then(html => {
                     // Replace the content dynamically
                     mainContent.innerHTML = html;
+
+                    // Update the browser's URL to reflect the new page
+                    history.pushState({
+                        page: page
+                    }, "", `?page=${page}`);
                 })
                 .catch(error => {
                     mainContent.innerHTML = `<div>Error: ${error.message}</div>`;
@@ -58,7 +64,16 @@ require_once __DIR__ . '/route.php';
             });
         });
 
-        // Load the default page
-        loadPage("<?php echo $page; ?>");
+        // Listen for browser back/forward button events
+        window.addEventListener("popstate", function(event) {
+            if (event.state && event.state.page) {
+                loadPage(event.state.page); // Load the page based on the state
+            }
+        });
+
+        // Load the default page (this will be the page based on URL)
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = urlParams.get('page') || "<?php echo $page; ?>";
+        loadPage(page);
     });
 </script>

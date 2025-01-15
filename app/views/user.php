@@ -4,7 +4,7 @@ require_once '../app/controllers/UserController.php';
 $userController = new UserController();
 // print_r($_SESSION);
 $page = isset($_GET['page']) ? $_GET['page'] : 1; // Get the current page
-$users = $userController->getUsers($page);
+// $users = $userController->getUsers($page);
 // print_r($users);
 // if (isset($_POST['user_name']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 //     $newUserId = $userController->addUser($_POST['user_name'], $_POST['email'], $_POST['password']);
@@ -75,9 +75,9 @@ $users = $userController->getUsers($page);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($users as $key => $user) {
-                            // print_r($user);
-                        ?>
+                        <!-- <?php foreach ($users as $key => $user) {
+                                    // print_r($user);
+                                ?>
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td><?= $user['user_name'] ?></td>
@@ -91,7 +91,7 @@ $users = $userController->getUsers($page);
 
                             </tr>
 
-                        <?php } ?>
+                        <?php } ?> -->
                     </tbody>
                 </table>
             </div>

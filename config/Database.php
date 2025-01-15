@@ -1,4 +1,5 @@
 <?php
+
 class Database
 {
     private $pdo;
@@ -37,45 +38,50 @@ class Database
     // FROM query
     public function from($table)
     {
-        $this->query .= " FROM $table"; // Ensure this is added
+        $this->query .= " FROM `$table`";
         return $this;
     }
 
-    // LIMIT query
-    public function limit($limit)
+    // WHERE query
+    public function where($condition, $params = [])
     {
-        $this->query .= " LIMIT $limit";
-        return $this;
-    }
-
-    // OFFSET query
-    public function offset($offset)
-    {
-        $this->query .= " OFFSET $offset";
+        $this->query .= " WHERE $condition";
+        $this->params = array_merge($this->params, $params);
         return $this;
     }
 
     // ORDER BY query
     public function orderBy($column, $direction = 'ASC')
     {
-        $this->query .= " ORDER BY $column $direction";
+        $this->query .= " ORDER BY `$column` $direction";
         return $this;
     }
 
-    // Prepare the query and execute
+    // LIMIT query
+    public function limit($limit)
+    {
+        $this->query .= " LIMIT :limit";
+        $this->params[':limit'] = $limit;
+        return $this;
+    }
+
+    // OFFSET query
+    public function offset($offset)
+    {
+        $this->query .= " OFFSET :offset";
+        $this->params[':offset'] = $offset;
+        return $this;
+    }
+
+    // Execute the query and return results
     public function get()
     {
-        if (strpos($this->query, 'ORDER BY') !== false && strpos($this->query, 'LIMIT') !== false) {
-            // Move ORDER BY before LIMIT if necessary
-            $this->query = preg_replace('/(ORDER BY.*)(LIMIT.*)/', '$1 $2', $this->query);
-        }
-
         $stmt = $this->pdo->prepare($this->query);
         $stmt->execute($this->params);
         return $stmt->fetchAll();
     }
 
-    // Execute a query with parameters
+    // Generic execute method
     public function execute($query, $params = [])
     {
         $stmt = $this->pdo->prepare($query);

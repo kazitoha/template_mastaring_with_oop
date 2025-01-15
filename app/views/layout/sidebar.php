@@ -36,10 +36,11 @@
                                 </div>
                             </div>
                             <div class="dropdown-list-content dropdown-list-message">
-                                <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar
-											text-white"> <img alt="image" src="<?php echo base_url('public/img/users/user-1.png'); ?>" class="rounded-circle">
-                                    </span> <span class="dropdown-item-desc"> <span class="message-user">John
-                                            Deo</span>
+                                <a href="#" class="dropdown-item">
+                                    <span class="dropdown-item-avatar text-white">
+                                        <img alt="image" src="<?php echo base_url('public/img/users/user-1.png'); ?>" class="rounded-circle">
+                                    </span>
+                                    <span class="dropdown-item-desc"> <span class="message-user">John Deo</span>
                                         <span class="time messege-text">Please check your mail !!</span>
                                         <span class="time">2 Min Ago</span>
                                     </span>
